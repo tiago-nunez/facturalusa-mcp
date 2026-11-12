@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: facturalusa-mcp
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python src/server.py
+    healthCheckPath: /health
+    envVars:
+      - key: FACTURALUSA_API_BASE
+        value: https://facturalusa.pt/api/v2
+      - key: FACTURALUSA_API_KEY
+        sync: false
+      - key: MCP_ACCESS_TOKEN
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.12.8
